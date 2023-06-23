@@ -16,8 +16,8 @@ pipeline {
                         for (entry in entries) {
                             echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
 
-                            for (e, k in entry){
-                                echo "${e} ${k}"
+                            for (kv in mapToList(entry)){
+                                echo "${kv[0]} ${kv[1]}"
                             }
                         }
                     }
