@@ -5,7 +5,7 @@ pipeline {
         stage('Get ChangeSets') {
             steps {
                 script {
-                    def author = ""
+                    def changes = ""
                     def currentBuildId = "$BUILD_ID" as int
                     echo("================")
                     echo "Build Number ${currentBuildId}";
@@ -14,12 +14,10 @@ pipeline {
                     for (int i = 0; i < changeLogSets.size(); i++) {
                         def entries = changeLogSets[i].items
                         for (entry in entries) {
-                            echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
-
-                            echo entry.getAuthorName()
+                            changes += "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg} \n"
                         }
                     }
-                    echo("================")
+                    echo("${changes}================")
                 }
             }
         }
