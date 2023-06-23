@@ -1,10 +1,3 @@
-// Required due to JENKINS-27421
-@NonCPS
-List<List<?>> mapToList(Map map) {
-  return map.collect { it ->
-    [it.key, it.value]
-  }
-}
 
 pipeline {
     agent any
@@ -23,8 +16,8 @@ pipeline {
                         for (entry in entries) {
                             echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
 
-                            for (kv in mapToList(entry)){
-                                echo "${kv[0]} ${kv[1]}"
+                            for (kv in entry){
+                                echo "${kv.key} ${kv.value}"
                             }
                         }
                     }
