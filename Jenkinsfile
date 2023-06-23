@@ -15,6 +15,10 @@ pipeline {
                         def entries = changeLogSets[i].items
                         for (entry in entries) {
                             echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
+
+                            for (e, k in entry){
+                                echo "${e} ${k}"
+                            }
                         }
                     }
                     echo("================")
