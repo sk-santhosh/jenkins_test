@@ -7,7 +7,9 @@ pipeline {
                 script {
                     def author = ""
                     def changeSet = currentBuild.changeSets  
+                    def currentBuildId = "$BUILD_ID" as int
                     echo("================")
+                    echo "Build Number ${currentBuildId}";
                     echo "ChangeSet Size : ${changeSet.size()}"
                     for (entries in changeSet) {
                         for (int j = 0; j < entries.length; j++) {
